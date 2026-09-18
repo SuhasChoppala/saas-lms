@@ -2,6 +2,10 @@ packages:
   - "apps/*"
   - "packages/*"
 
+# Don't run install scripts for this package — it ships a prebuilt binary
+allowBuilds:
+  unrs-resolver: false
+
 # Supply-chain protection: don't install packages published in the last 24h
 minimumReleaseAge: 1440
 minimumReleaseAgeExclude:
