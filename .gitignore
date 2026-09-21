@@ -6,3 +6,7 @@ dist
 .turbo
 .DS_Store
 .claude/settings.local.json
+
+# A monorepo has exactly one lockfile, at the root
+apps/*/pnpm-lock.yaml
+packages/*/pnpm-lock.yaml
