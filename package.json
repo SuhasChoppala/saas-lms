@@ -12,7 +12,11 @@
     "test": "turbo run test",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "services:up": "docker compose up -d --wait",
+    "services:down": "docker compose down",
+    "services:logs": "docker compose logs -f",
+    "db:shell": "docker compose exec mongo sh -c 'mongosh -u \"$MONGO_INITDB_ROOT_USERNAME\" -p \"$MONGO_INITDB_ROOT_PASSWORD\"'"
   },
   "lint-staged": {
     "*.{ts,tsx,js,mjs,json,css,md,yaml,yml}": "prettier --write"
