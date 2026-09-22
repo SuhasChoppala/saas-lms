@@ -14,6 +14,7 @@ services:
       GLIBC_TUNABLES: glibc.pthread.rseq=1
     volumes:
       - mongo-data:/data/db
+      - mongo-config:/data/configdb
     healthcheck:
       test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
       interval: 10s
@@ -26,3 +27,4 @@ services:
 
 volumes:
   mongo-data:
+  mongo-config:
