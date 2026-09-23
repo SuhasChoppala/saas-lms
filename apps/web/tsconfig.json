@@ -1,7 +1,6 @@
 {
   "extends": "@ledger/typescript-config/nextjs.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
