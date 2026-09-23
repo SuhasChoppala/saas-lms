@@ -2,9 +2,9 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 export default async function InstructorPage() {
-  const { userId, orgId, orgRole } = await auth();
+  const { userId, orgId, orgRole, redirectToSignIn } = await auth();
 
-  if (!userId) redirect("/sign-in");
+  if (!userId) return redirectToSignIn();
   if (!orgId) redirect("/dashboard");
   if (orgRole !== "org:admin") redirect("/dashboard");
 
