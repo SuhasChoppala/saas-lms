@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Show, SignInButton, SignUpButton, UserButton, OrganizationSwitcher } from "@clerk/nextjs";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export function SiteHeader() {
   return (
@@ -9,6 +10,7 @@ export function SiteHeader() {
       </Link>
 
       <nav className="flex items-center gap-4">
+        <ThemeToggle />
         <Show when="signed-in">
           <Link href="/dashboard" className="text-sm text-zinc-600 dark:text-zinc-400">
             Dashboard
