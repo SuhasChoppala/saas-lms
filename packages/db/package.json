@@ -1,0 +1,20 @@
+{
+  "name": "@ledger/db",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@ledger/typescript-config": "workspace:*",
+    "@types/node": "^26.6.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "mongoose": "^9.10.2"
+  }
+}
