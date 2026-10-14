@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import type { InferSchemaType } from "mongoose";
+import type { InferSchemaType, Model } from "mongoose";
 const { Schema } = mongoose;
 
 const groupSchema = new Schema(
@@ -23,6 +23,8 @@ const groupSchema = new Schema(
   { timestamps: true },
 );
 
-export const GroupModel = mongoose.model("Group", groupSchema);
-
 export type Group = InferSchemaType<typeof groupSchema>;
+
+export const GroupModel =
+  (mongoose.models.Group as Model<Group> | undefined) ??
+  mongoose.model<Group>("Group", groupSchema);

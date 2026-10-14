@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import type { InferSchemaType } from "mongoose";
+import type { InferSchemaType, Model } from "mongoose";
 const { Schema } = mongoose;
 
 const lessonSchema = new Schema({
@@ -33,6 +33,8 @@ const courseSchema = new Schema(
 
 courseSchema.index({ groupId: 1, slug: 1 }, { unique: true });
 
-export const CourseModel = mongoose.model("Course", courseSchema);
-
 export type Course = InferSchemaType<typeof courseSchema>;
+
+export const CourseModel =
+  (mongoose.models.Course as Model<Course> | undefined) ??
+  mongoose.model<Course>("Course", courseSchema);
