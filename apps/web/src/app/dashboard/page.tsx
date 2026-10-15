@@ -1,5 +1,5 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
-import { connectDb, UserModel } from "@ledger/db";
+import { connectDb, UserModel } from "@edforge/db";
 
 export default async function DashboardPage() {
   const { userId, orgId, orgRole, redirectToSignIn } = await auth();

@@ -1,5 +1,5 @@
 {
-  "extends": "@ledger/typescript-config/nextjs.json",
+  "extends": "@edforge/typescript-config/nextjs.json",
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"]

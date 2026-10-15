@@ -1,4 +1,4 @@
 {
-  "extends": "@ledger/typescript-config/node.json",
+  "extends": "@edforge/typescript-config/node.json",
   "include": ["src"]
 }

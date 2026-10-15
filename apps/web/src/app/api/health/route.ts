@@ -1,4 +1,4 @@
-import { connectDb } from "@ledger/db";
+import { connectDb } from "@edforge/db";
 
 export async function GET() {
   const mongoose = await connectDb();

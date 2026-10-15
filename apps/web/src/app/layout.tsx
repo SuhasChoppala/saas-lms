@@ -16,7 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ledger",
+  title: "edforge",
   description: "A marketplace for courses and communities",
 };
 

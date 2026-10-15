@@ -6,7 +6,7 @@ export function SiteHeader() {
   return (
     <header className="flex h-16 items-center justify-between border-b border-zinc-200 px-6 dark:border-zinc-800">
       <Link href="/" className="font-semibold">
-        Ledger
+        edforge
       </Link>
 
       <nav className="flex items-center gap-4">

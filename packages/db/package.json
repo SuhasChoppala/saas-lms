@@ -1,5 +1,5 @@
 {
-  "name": "@ledger/db",
+  "name": "@edforge/db",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -10,7 +10,7 @@
     "type-check": "tsc --noEmit"
   },
   "devDependencies": {
-    "@ledger/typescript-config": "workspace:*",
+    "@edforge/typescript-config": "workspace:*",
     "@types/node": "^26.6.2",
     "typescript": "^5.9.3"
   },
