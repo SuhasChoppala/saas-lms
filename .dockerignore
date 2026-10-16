@@ -1,0 +1,20 @@
+# Dependencies: the image installs its own, built for Linux
+**/node_modules
+
+# Secrets: never inside an image
+**/.env
+**/.env.local
+.claude/settings.local.json
+
+# Build output from your Mac: the image builds its own
+**/.next
+**/.turbo
+**/dist
+
+# Not needed to build or run
+.git
+**/.DS_Store
+
+# A monorepo has exactly one lockfile, at the root
+apps/*/pnpm-lock.yaml
+packages/*/pnpm-lock.yaml
