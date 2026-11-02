@@ -2,6 +2,9 @@ import { Button } from "@/components/ui/button";
 import { auth } from "@clerk/nextjs/server";
 import { groupFormSchema } from "@/lib/schemas/group";
 import * as z from "zod";
+import { connectDb, GroupModel } from "@edforge/db";
+import { clerkClient } from "@clerk/nextjs/server";
+import type { Organization } from "@clerk/nextjs/server";
 
 export default async function GroupNewPage() {
   const { userId, redirectToSignIn } = await auth();
@@ -15,10 +18,54 @@ export default async function GroupNewPage() {
 
     const plainObject = Object.fromEntries(formData);
     const result = groupFormSchema.safeParse(plainObject);
+
     if (!result.success) {
       console.log(z.prettifyError(result.error));
-    } else {
-      console.log(result.data);
+      return;
+    }
+
+    const { name, slug, description } = result.data;
+
+    await connectDb();
+    if (await GroupModel.exists({ slug })) {
+      console.log("Slug already exists");
+      return;
+    }
+
+    console.log("Slug available");
+    const client = await clerkClient();
+    let organization: Organization;
+
+    try {
+      organization = await client.organizations.createOrganization({
+        name,
+        createdBy: userId,
+      });
+    } catch (error) {
+      console.log("Organization creation failure in clerk", error);
+      return;
+    }
+
+    try {
+      const createdGroupInDB = await GroupModel.create({
+        clerkOrgId: organization.id,
+        ownerClerkId: userId,
+        name,
+        slug,
+        description,
+      });
+      console.log("Document created in db", createdGroupInDB.id);
+    } catch (saveError) {
+      console.log(saveError);
+      try {
+        const rolledBackOrg = await client.organizations.deleteOrganization(organization.id);
+        console.log("Rolledback Id after deletion of org in clerk:", rolledBackOrg.id);
+      } catch (deletionError) {
+        console.log(
+          "The deletion of org in clerk has failed, and org will be an orphan:",
+          deletionError,
+        );
+      }
     }
   };
 
