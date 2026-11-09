@@ -1,6 +1,5 @@
-import { Button } from "@/components/ui/button";
 import { auth } from "@clerk/nextjs/server";
-import { createGroup } from "./actions";
+import { CreateGroupForm } from "./create-group-form";
 
 export default async function GroupNewPage() {
   const { userId, redirectToSignIn } = await auth();
@@ -10,20 +9,7 @@ export default async function GroupNewPage() {
   return (
     <main className="mx-auto max-w-2xl p-8">
       <h1 className="text-2xl font-semibold">Create a new Group</h1>
-      <div className="mt-6">
-        <form action={createGroup} className="flex flex-col">
-          <label htmlFor="name">Name</label>
-          <input required type="text" name="name" id="name" />
-          <label htmlFor="slug">Slug</label>
-          <input required type="text" name="slug" id="slug" />
-          <label htmlFor="description">Description</label>
-          <input type="text" name="description" id="description" />
-
-          <div>
-            <Button type="submit">Create Group</Button>
-          </div>
-        </form>
-      </div>
+      <CreateGroupForm />
     </main>
   );
 }
