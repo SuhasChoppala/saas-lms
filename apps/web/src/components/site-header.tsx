@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { Show, SignInButton, SignUpButton, UserButton, OrganizationSwitcher } from "@clerk/nextjs";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Button } from "@/components/ui/button";
 
 export function SiteHeader() {
   return (
-    <header className="flex h-16 items-center justify-between border-b border-zinc-200 px-6 dark:border-zinc-800">
+    <header className="flex h-16 items-center justify-between border-b px-6">
       <Link href="/" className="font-semibold">
         edforge
       </Link>
@@ -12,7 +13,7 @@ export function SiteHeader() {
       <nav className="flex items-center gap-4">
         <ThemeToggle />
         <Show when="signed-in">
-          <Link href="/dashboard" className="text-sm text-zinc-600 dark:text-zinc-400">
+          <Link href="/dashboard" className="text-sm text-muted-foreground">
             Dashboard
           </Link>
           <OrganizationSwitcher />
@@ -21,12 +22,10 @@ export function SiteHeader() {
 
         <Show when="signed-out">
           <SignInButton>
-            <button className="cursor-pointer text-sm">Sign in</button>
+            <Button variant="ghost">Sign in</Button>
           </SignInButton>
           <SignUpButton>
-            <button className="cursor-pointer rounded-full bg-zinc-900 px-4 py-2 text-sm text-white dark:bg-zinc-100 dark:text-zinc-900">
-              Sign up
-            </button>
+            <Button>Sign up</Button>
           </SignUpButton>
         </Show>
       </nav>
