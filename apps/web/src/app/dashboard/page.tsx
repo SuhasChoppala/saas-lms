@@ -1,5 +1,6 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { connectDb, UserModel } from "@edforge/db";
+import { PageShell } from "@/components/page-shell";
 
 export default async function DashboardPage() {
   const { userId, orgId, orgRole, redirectToSignIn } = await auth();
@@ -27,26 +28,25 @@ export default async function DashboardPage() {
   );
 
   return (
-    <main className="mx-auto max-w-2xl p-8">
-      <h1 className="text-2xl font-semibold">Dashboard</h1>
-      <dl className="mt-6 space-y-2 text-sm">
+    <PageShell title="Dashboard">
+      <dl className="space-y-2 text-sm">
         <div>
-          <dt className="inline text-zinc-500">Email: </dt>
+          <dt className="inline text-muted-foreground">Email: </dt>
           <dd className="inline">{userDoc?.email}</dd>
         </div>
         <div>
-          <dt className="inline text-zinc-500">User Clerk ID: </dt>
+          <dt className="inline text-muted-foreground">User Clerk ID: </dt>
           <dd className="inline font-mono">{userDoc?.clerkId}</dd>
         </div>
         <div>
-          <dt className="inline text-zinc-500">Organization: </dt>
+          <dt className="inline text-muted-foreground">Organization: </dt>
           <dd className="inline font-mono">{orgId ?? "none"}</dd>
         </div>
         <div>
-          <dt className="inline text-zinc-500">Role: </dt>
+          <dt className="inline text-muted-foreground">Role: </dt>
           <dd className="inline font-mono">{orgRole ?? "none"}</dd>
         </div>
       </dl>
-    </main>
+    </PageShell>
   );
 }

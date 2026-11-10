@@ -1,9 +1,10 @@
 import { SignUp } from "@clerk/nextjs";
+import { PageShell } from "@/components/page-shell";
 
 export default function SignUpPage() {
   return (
-    <main className="flex min-h-screen items-center justify-center p-6">
+    <PageShell title="Sign up">
       <SignUp />
-    </main>
+    </PageShell>
   );
 }

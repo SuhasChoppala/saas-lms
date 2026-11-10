@@ -1,4 +1,5 @@
 import { auth } from "@clerk/nextjs/server";
+import { PageShell } from "@/components/page-shell";
 import { CreateGroupForm } from "./create-group-form";
 
 export default async function GroupNewPage() {
@@ -7,9 +8,8 @@ export default async function GroupNewPage() {
   if (!userId) return redirectToSignIn();
 
   return (
-    <main className="mx-auto max-w-2xl p-8">
-      <h1 className="text-2xl font-semibold">Create a new Group</h1>
+    <PageShell title="Create a new Group">
       <CreateGroupForm />
-    </main>
+    </PageShell>
   );
 }
