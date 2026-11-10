@@ -3,6 +3,10 @@
 import { useActionState } from "react";
 import { createGroup, type CreateGroupState } from "./actions";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 
 export const CreateGroupForm = () => {
   const initialState: CreateGroupState = {};
@@ -10,11 +14,11 @@ export const CreateGroupForm = () => {
   const [state, formAction, isPending] = useActionState(createGroup, initialState);
 
   return (
-    <>
-      <div className="mt-6">
+    <Card>
+      <CardContent>
         <form action={formAction} className="flex flex-col">
-          <label htmlFor="name">Name</label>
-          <input
+          <Label htmlFor="name">Name</Label>
+          <Input
             required
             type="text"
             name="name"
@@ -24,8 +28,8 @@ export const CreateGroupForm = () => {
           {state.fieldErrors?.name?.[0] && (
             <p className="text-destructive">{state.fieldErrors?.name[0]}</p>
           )}
-          <label htmlFor="slug">Slug</label>
-          <input
+          <Label htmlFor="slug">Slug</Label>
+          <Input
             required
             type="text"
             name="slug"
@@ -35,9 +39,8 @@ export const CreateGroupForm = () => {
           {state.fieldErrors?.slug?.[0] && (
             <p className="text-destructive">{state.fieldErrors?.slug[0]}</p>
           )}
-          <label htmlFor="description">Description</label>
-          <input
-            type="text"
+          <Label htmlFor="description">Description</Label>
+          <Textarea
             name="description"
             id="description"
             defaultValue={state.submittedValues?.description}
@@ -53,7 +56,7 @@ export const CreateGroupForm = () => {
             </Button>
           </div>
         </form>
-      </div>
-    </>
+      </CardContent>
+    </Card>
   );
 };
