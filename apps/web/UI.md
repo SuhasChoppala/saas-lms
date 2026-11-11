@@ -26,3 +26,6 @@ Server actions, in which the action run only in the server, and the response is 
 
 - To show individual field errors, we use zod and useActionState on submit of the form.
 - Using TypeScript to lock the shape of response which need to be sent back to the useActionState, to make sure the entered inputs are not vanished while the error messages displayed.
+- aria-described by is used to focus on the particular field.
+- By default when the action return something, the form re-renders and the defualt value is changing after birth, for which baseUi complains. The key is added for form tag, and now whenever the action returns something, and it is assigned to a key, whenever the key changes, React deletes the old form, and builds a new form, and in this case even after several submissions, the input is being freshly created.
+- aria-invalid is used on input tags, to make sure it focused the particualar field, when an error exist on it.
